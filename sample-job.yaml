@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-job
+spec:
+  completions: 2
+  parallelism: 2
+  template:
+    spec:
+      containers:
+        - name: container1
+          image: sample-batch:0.4
+          args: ["--limit", "10", "--offset", "0"]
+        - name: container2
+          image: sample-batch:0.4
+          args: ["--limit", "10", "--offset", "10"]
+      restartPolicy: Never
